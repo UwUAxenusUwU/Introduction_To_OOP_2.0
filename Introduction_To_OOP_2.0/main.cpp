@@ -5,6 +5,8 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+#define delimiter "\n-----------------------------------------------------\n"
+
 class Point
 {
 	double x;
@@ -29,7 +31,7 @@ public:
 
 	//Constructors
 
-	Point()
+	/*Point()
 	{
 		x = y = 0;
 		cout << "Constructor:\t" << this << endl;
@@ -39,18 +41,37 @@ public:
 		this->x = x;
 		y = 0;
 		cout << "1 Arg constructor:\t" << this << endl;
-	}
-	Point(double x, double y)
+	}*/
+	Point(double x = 0, double y = 0)
 	{
 		this->x = x;
 		this->y = y;
-		cout << "2 Arg constructor:\t" << this << endl;
+		cout << "Constructor:\t" << this << endl;
+	}
+	Point(const Point& other)
+	{
+		this->x = other.x;
+		this->y = other.y;
+		cout << "CopyConstructor:\t" << this << endl;
 	}
 	~Point()
 	{
 		cout << "Destructor:\t" << this << endl;
 	}
-	double distance(Point other)
+
+	//			Operators: 
+
+	Point& operator=(const Point& other)
+	{
+		this->x = other.x;
+		this->y = other.y;
+		cout << "CopyAssignment\t" << this << endl; 
+		return *this;
+	}
+
+	//			Methods
+
+	double distance(const Point& other)
 	{
 		double x_distance = this->x - other.x;
 		double y_distance = this->y - other.y;
@@ -63,7 +84,7 @@ public:
 	}
 };
 
-double distance(Point A, Point B)
+double distance(const Point& A, const Point& B)
 {
 	double x_distance = A.get_x() - B.get_x();
 	double y_distance = A.get_y() - B.get_y();
@@ -72,6 +93,8 @@ double distance(Point A, Point B)
 
 //#define STRUCT_POINT
 //#define distance_check
+//#define COSTRUCTORS_CHECK
+//#define ASSIGNMENT_OPERATOR
 
 void main()
 {
@@ -98,16 +121,50 @@ void main()
 	//cout << B.get_x() << "\t" << B.get_y() << endl;
 	A.Print();
 	B.Print();
+	cout << delimiter << endl;
 	cout << "Расстояние от точки А до точки В: " << A.distance(B) << endl;
+	cout << delimiter << endl;
 	cout << "Расстояние от точки B до точки A: " << B.distance(A) << endl;
+	cout << delimiter << endl;
 	cout << "Расстояние между точками А и В: " << distance(A, B) << endl;
+	cout << delimiter << endl;
 	cout << "Расстояние между точками B и A: " << distance(B, A) << endl;
+	cout << delimiter << endl;
 #endif // distance_check
 
+#ifdef COSTRUCTORS_CHECK
 	Point A;
 	A.Print();
+
 	Point B(2, 3);
 	B.Print();
+
 	Point C = 5;
 	C.Print();
+
+	Point D = C;	//Copy constructor 
+	D.Print();
+
+	Point E;
+	E = D;			//Assignment operator
+	E.Print();
+
+#endif // COSTRUCTORS_CHECK
+
+#ifdef ASSIGNMENT_OPERATOR
+	int a, b, c;
+	a = b = c = 0;
+	cout << a << "\t" << b << "\t" << c << endl;
+
+	Point A, B, C;
+	cout << delimiter << endl;
+	A = B = C = Point(2, 3);
+	cout << delimiter << endl;
+	A.Print();
+	B.Print();
+	C.Print();
+#endif // ASSIGNMENT_OPERATOR
+
+
+
 }
