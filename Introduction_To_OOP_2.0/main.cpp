@@ -31,17 +31,17 @@ public:
 
 	//Constructors
 
-	/*Point()
-	{
-		x = y = 0;
-		cout << "Constructor:\t" << this << endl;
-	}
-	Point(double x)
-	{
-		this->x = x;
-		y = 0;
-		cout << "1 Arg constructor:\t" << this << endl;
-	}*/
+	//Point()
+	//{
+	//	x = y = 0;
+	//	cout << "Constructor:\t" << this << endl;
+	//}
+	//Point(double x)
+	//{
+	//	this->x = x;
+	//	y = 0;
+	//	cout << "1 Arg constructor:\t" << this << endl;
+	//}
 	Point(double x = 0, double y = 0)
 	{
 		this->x = x;
@@ -82,6 +82,7 @@ public:
 	{
 		cout << "X = " << x << "\tY = " << y << endl;
 	}
+
 };
 
 double distance(const Point& A, const Point& B)
